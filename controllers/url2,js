@@ -1,0 +1,28 @@
+const URL=require("..models/url");
+
+ const {nanoid}=require("nanoid");
+
+
+async  function handleshorturl(req,res){
+    //extracting nano id
+    const shortid=nanoid(8);
+    const body=req.body;
+    if(
+        !body.url
+        
+    ){
+        return res.status(400).json({msg:"url is required"});
+    }
+   //insertin in database
+  const result= await URL.create(
+    {
+       shortId:shortid,
+       redirectURL:body.url,
+       history:[],
+    }
+   );
+   return res.json({id:shortid});
+}
+module.exports={
+    handleshorturl,
+}
