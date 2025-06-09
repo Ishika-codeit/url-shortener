@@ -3,7 +3,7 @@ const router=express.Router();
 
 
 //importing controller
-const{handleshorturl}=require("../controllers/url2");
+const{handleshorturl}=require("../controllers/url");
 
 
 

@@ -1,11 +1,11 @@
-const URL=require("..models/url");
+const URL=require("../models/url");
 
- const {nanoid}=require("nanoid");
+const shortid=  require("shortid");
 
 
 async  function handleshorturl(req,res){
     //extracting nano id
-    const shortid=nanoid(8);
+    const shortID= shortid();
     const body=req.body;
     if(
         !body.url
@@ -16,12 +16,12 @@ async  function handleshorturl(req,res){
    //insertin in database
   const result= await URL.create(
     {
-       shortId:shortid,
+       shortId:shortID,
        redirectURL:body.url,
        history:[],
     }
    );
-   return res.json({id:shortid});
+   return res.json({id:shortID});
 }
 module.exports={
     handleshorturl,
