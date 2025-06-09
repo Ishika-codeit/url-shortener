@@ -5,10 +5,10 @@ const shortid=  require("shortid");
 
 async  function handleshorturl(req,res){
     //extracting nano id
-    const shortID= shortid();
+    const shortID= shortid.generate();
     const body=req.body;
     if(
-        !body.url
+        (!body||!body.url)
         
     ){
         return res.status(400).json({msg:"url is required"});
