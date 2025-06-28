@@ -36,7 +36,7 @@ async function redirectoriginal(req,res){
         },
     },
     }
-)
+);
 if (!entry) {
         return res.status(404).send("Short URL not found");
     }
