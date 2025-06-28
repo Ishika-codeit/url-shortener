@@ -13,7 +13,7 @@ async  function handleshorturl(req,res){
     ){
         return res.status(400).json({msg:"url is required"});
     }
-   //insertin in database
+   //insert  in database
   const result= await URL.create(
     {
        shortId:shortID,
@@ -44,6 +44,24 @@ res.redirect(entry.redirectURL);
 }
 
 
+async function handlehistory(req,res){
+    try{
+    const shortID=req.params.shortID;
+    const result= await URL.findOne({shortId:shortID});
+     if (!result) {
+            return res.status(404).json({ msg: "Short URL not found" });
+        }
+    return res.json({
+        totalclicks:result.history.length,
+        analytics: result.history
+    });
+}
+    catch (err) {
+        console.error("Error in handlehistory:", err);
+        return res.status(500).json({ msg: "Server error" });
+    }
+}
+    
 
 
 
@@ -51,4 +69,5 @@ res.redirect(entry.redirectURL);
 module.exports={
     handleshorturl,
     redirectoriginal,
+    handlehistory,
 }

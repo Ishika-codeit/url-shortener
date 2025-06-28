@@ -3,13 +3,7 @@ const router=express.Router();
 
 
 //importing controller
-const{handleshorturl,redirectoriginal}=require("../controllers/url");
-
-
-
-
-
-
+const{handleshorturl,redirectoriginal,handlehistory}=require("../controllers/url");
 
 
 router.route("/").post(handleshorturl);
@@ -17,6 +11,6 @@ router.route("/:shortID")
 .get(redirectoriginal);
 
 
-// router.route("/URL/analytics/:id")
-//  .get(handlehistory);
+router.route("/analytics/:shortID")
+ .get(handlehistory);
 module.exports=router;

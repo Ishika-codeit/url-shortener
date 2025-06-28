@@ -14,6 +14,6 @@ connectmongo("mongodb://127.0.0.1:27017/short_url")
 .catch((err) => console.log("error caught",err));
 
 const urlrouter=require("./routes/url");
-app.use("/url",urlrouter);
+app.use("/",urlrouter);
 
 app.listen(port,()=>console.log("server startedddddddddd"));
