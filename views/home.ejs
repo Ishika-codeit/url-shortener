@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>URL Shortener</title>
+    <% if (locals.id) { %>
+    <div class="short-url">
+        Short URL: 
+        <a href="http://localhost:2000/url/<%= id %>" target="_blank">
+            http://localhost:2000/url/<%= id %>
+        </a>
+    </div>
+<% } %>
+
+     
     <style>
         body {
             margin: 0;
@@ -70,18 +80,90 @@
             font-size: 14px;
             color: #777;
         }
+        .short-url {
+    margin-top: 25px;
+    background-color: #f4f4f4;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #333;
+}
+
+.short-url a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.short-url a:hover {
+    text-decoration: underline;
+}
+.url-table {
+    width: 100%;
+    margin-top: 30px;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.url-table th,
+.url-table td {
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+.url-table th {
+    background-color: #f4f4f4;
+}
+
+.url-table a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.url-table a:hover {
+    text-decoration: underline;
+}
+
+
     </style>
 </head>
 <body>
     <div class="container">
         <h1>URL Shortener</h1>
-        <form action="/shorten" method="POST">
-            <input type="url" name="redirectoriginal" placeholder="Enter your long URL here..." required>
+        <form action="/url" method="POST">
+            <input type="text" name="url" placeholder="Enter your long URL here..." required>
             <button type="submit">Shorten</button>
         </form>
         <div class="footer">
             Your shortened link will appear here after submission.
         </div>
     </div>
+    <% if (locals.urls ) { %>
+    <h3>Generated URLs</h3>
+    <table class="url-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Short id</th>
+                <th>Redirect</th>
+                <th>clicks</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% urls.forEach((url, index) => { %>
+                <tr>
+                    <td><%= index + 1 %></td>
+                    <td><%= url.shortId %></td>
+                   <td><%= url.redirectURL%></td>
+                   <td><%= url.history.length%></td>
+                   
+                    
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+<% } %>
+
 </body>
 </html>
