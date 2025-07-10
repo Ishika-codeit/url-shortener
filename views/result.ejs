@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shortened URL</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .short-url {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 16px;
+            margin-bottom: 25px;
+            word-wrap: break-word;
+        }
+
+        .short-url a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .short-url a:hover {
+            text-decoration: underline;
+        }
+
+        .links a {
+            margin: 0 10px;
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            background-color: #764ba2;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+
+        .links a:hover {
+            background-color: #5a3d91;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Generated Short URL</h2>
+        <div class="short-url">
+            <a href="http://localhost:2000/url/<%= id %>" target="_blank">
+                http://localhost:2000/url/<%= id %>
+            </a>
+        </div>
+        <div class="links">
+            <a href="/">Create Another</a>
+            <a href="/list">View All URLs</a>
+        </div>
+    </div>
+</body>
+</html>

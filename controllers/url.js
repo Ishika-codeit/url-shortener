@@ -21,7 +21,7 @@ async  function handleshorturl(req,res){
        history:[],
     }
    );
-   return res.render('home',{id:shortID});
+   return res.redirect(`/result/${shortID}`);
 }
 
 async function redirectoriginal(req,res){
