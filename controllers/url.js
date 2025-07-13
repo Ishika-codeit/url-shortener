@@ -21,7 +21,16 @@ async  function handleshorturl(req,res){
        history:[],
     }
    );
-   return res.redirect(`/result/${shortID}`);
+  if (req.headers.accept?.includes("application/json")) {
+        return res.status(201).json({
+            message: "Short URL created",
+            shortUrl: `http://localhost:2000/url/${shortID}`,
+            shortID: shortID,
+            originalUrl: body.url
+        });
+    }
+
+    return res.redirect(`/result/${shortID}`);
 }
 
 async function redirectoriginal(req,res){

@@ -38,6 +38,8 @@ app.set("views",path.resolve("./views"));
 
 const urlrouter=require("./routes/url");
 const staticrouter=require("./routes/staticrouter");
+const userRoute = require("./routes/user");
+app.use("/user",userRoute);
 app.use("/url",urlrouter);
 app.use("/",staticrouter);
 

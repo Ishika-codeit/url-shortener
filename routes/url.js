@@ -6,11 +6,9 @@ const router=express.Router();
 const{handleshorturl,redirectoriginal,handlehistory}=require("../controllers/url");
 
 
-router.route("/").post(handleshorturl);
-router.route("/:shortID")
-.get(redirectoriginal);
+router.post("/",handleshorturl);
+router.get("/:shortID",redirectoriginal);
 
 
-router.route("/analytics/:shortID")
- .get(handlehistory);
+router.get("/analytics/:shortID",handlehistory);
 module.exports=router;
