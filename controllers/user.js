@@ -30,7 +30,7 @@ const {setuser,getuser}=require("../service/auth");
    }
    const sessionid = uuidv4();
    setuser(sessionid,signuser);
-   res.cookie("uid");
+   res.cookie("uid",sessionid);
    return res.redirect("/");
  }
   catch (err) {

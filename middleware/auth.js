@@ -4,7 +4,7 @@ const {getuser}=require("../service/auth")
 async function restrictuser(req,res,next){
   const userid=req.cookies?.uid;
   if(!userid){
-    res.redirect("/login");
+    return res.redirect("/login");
   }
   const user=getuser(userid);
   if(!user){
@@ -13,6 +13,17 @@ async function restrictuser(req,res,next){
   req.user=user;
   next();
 }
+async function checkauth(req,res,next){
+   const userid=req.cookies?.uid;
+  if(!userid){
+    return res.redirect("/login");
+  }
+  const user=getuser(userid);
+  
+  req.user=user;
+  next();
+}
 module.exports={
     restrictuser,
+    checkauth,
 }

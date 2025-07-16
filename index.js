@@ -4,11 +4,11 @@ const port=2000;
 const path=require("path");
 const URL = require("./models/url");
 const cookieparser=require("cookie-parser");
-const {restrictuser}=require("./middleware/auth");
+const {restrictuser,checkauth}=require("./middleware/auth");
 //middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); 
-app.use(cookieparser);
+app.use(cookieparser());
 const {connectmongo}=require("./connect")
 
 connectmongo("mongodb://127.0.0.1:27017/short_url")
@@ -42,8 +42,8 @@ app.set("views",path.resolve("./views"));
 const urlrouter=require("./routes/url");
 const staticrouter=require("./routes/staticrouter");
 const userRoute = require("./routes/user");
-app.use("/user",userRoute);
 app.use("/url",restrictuser,urlrouter);
+app.use("/user", checkauth,userRoute);
 app.use("/",staticrouter);
 
 app.listen(port,()=>console.log("server startedddddddddd"));

@@ -1,11 +1,11 @@
 const sessionmap= new Map();
 
 function setuser(id,user){
-    sessionmap.set(id,user);
+   sessionmap.set(id,user);
 }
 
 function getuser(id){
-    sessionmap.get(id);
+   return sessionmap.get(id);
 }
 module.exports={
     setuser,

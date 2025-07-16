@@ -19,6 +19,7 @@ async  function handleshorturl(req,res){
        shortId:shortID,
        redirectURL:body.url,
        history:[],
+       createdby:req.user._id,
     }
    );
   if (req.headers.accept?.includes("application/json")) {

@@ -9,8 +9,11 @@ router.get("/",async(req,res)=>{
 
 
 router.get("/list", async (req, res) => {
-    const allurls = await URL.find({});
+    if(!req.user) return res.redirect("/login");
+    else{
+    const allurls = await URL.find({ createdby :req.user._id});
     return res.render("list", { urls: allurls });
+    }
 });
 
 
