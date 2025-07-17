@@ -43,7 +43,7 @@ const urlrouter=require("./routes/url");
 const staticrouter=require("./routes/staticrouter");
 const userRoute = require("./routes/user");
 app.use("/url",restrictuser,urlrouter);
-app.use("/user", checkauth,userRoute);
-app.use("/",staticrouter);
+app.use("/user",userRoute);
+app.use("/",checkauth,staticrouter);
 
 app.listen(port,()=>console.log("server startedddddddddd"));
