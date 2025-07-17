@@ -24,13 +24,15 @@ const {setuser,getuser}=require("../service/auth");
  async function handlelogin(req,res){
    const{email,password}=req.body;
    try{
-    const signuser=await User.findOne({email,password});
-   if(!signuser){
+    const user=await User.findOne({email,password});
+   if(!user){
       return res.render("login",{error:"invalid mail or password"});
    }
-   const sessionid = uuidv4();
-   setuser(sessionid,signuser);
-   res.cookie("uid",sessionid);
+  // const sessionid = uuidv4();
+  // setuser(sessionid,signuser);
+  const token=setuser(user);
+  // res.cookie("uid",sessionid);
+  res.cookie("uid",token);
    return res.redirect("/");
  }
   catch (err) {
