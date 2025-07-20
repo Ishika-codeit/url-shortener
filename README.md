@@ -50,3 +50,9 @@ url-shortener/
    ```bash
    git clone https://github.com/Ishika-codeit/url-shortener.git
    cd url-shortener
+
+📄 License
+This project is licensed under the MIT License.
+
+🤝 Contributing
+Feel free to fork the repo and submit pull requests. Any contributions or suggestions to improve the API are welcome!
